@@ -2599,8 +2599,4 @@ background_opacity 0.9
 
 #: }}}
 
-
-# BEGIN_KITTY_THEME
-# Gruvbox Dark
-include current-theme.conf
-# END_KITTY_THEME
+include "./kitty_gruvbox_theme/gruvbox_dark.conf"
