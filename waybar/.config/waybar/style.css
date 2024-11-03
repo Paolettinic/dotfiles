@@ -72,6 +72,7 @@
 @define-color font_gruv_normal #ebdbb2;
 @define-color font_gruv_faded #a89985;
 @define-color font_gruv_darker #D8DEE9;
+@define-color font_gruv_alternative #FFAF00;
 @define-color font_dark_alternative #655b53;
 
 /* Reset all styles */
@@ -85,7 +86,7 @@
 /* The whole bar */
 #waybar {
     background: @bg;
-    color: @light;
+    color: @font_gruv_alternative;
     font-family: "Cantarell", "Font Awesome 5 Pro";
     font-size: 10pt;
     font-weight: bold;
@@ -261,11 +262,11 @@
 /* And now modules themselves in their respective order */
 #clock.time {
     background: @bg;
-    color: @font_gruv_normal;
+    color: @font_gruv_alternative;
 }
 #clock.date {
     background: @bg;
-    color: @font_gruv_faded;
+    color: @font_gruv_alternative;
 }
 
 #custom-scratchpad-indicator {
@@ -393,5 +394,10 @@
 #custom-weather {
     background: @mode;
     font-weight: bold;
+    padding: 0 0.6em;
+}
+#custom-notification{
+    font-weight: bold;
+    font-size: 1.1em;
     padding: 0 0.6em;
 }

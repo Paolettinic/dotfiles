@@ -1,6 +1,6 @@
+require("nico.set")
 require("nico.remap")
 require("nico.lazy")
-require("nico.set")
 
 local augroup = vim.api.nvim_create_augroup
 local NicoGroup = augroup('nico', {})
