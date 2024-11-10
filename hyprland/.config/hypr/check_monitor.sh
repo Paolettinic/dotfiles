@@ -12,3 +12,6 @@ fi
 
 echo "monitor=HDMI-A-2,1920x1080@60.00,auto,1" >> ~/.config/hypr/monitor.conf
 echo "monitor = , preferred, auto, 1" >> ~/.config/hypr/monitor.conf
+
+echo "executed on:"  > ~/.config/hypr/executed.conf
+date >> ~/.config/hypr/executed.conf
