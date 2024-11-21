@@ -26,26 +26,6 @@ return {
 
         local lspconfig = require("lspconfig")
         --local lspconfig_config = require("lspconfig.configs")
-        -- mlang
-        --if not lspconfig_config.mlang then
-        --    local mlang_server = "/opt/mlang/server.js"
-        --    lspconfig_config.mlang = {
-        --        default_config = {
-        --            name = "mlang",
-        --            cmd = { "node", mlang_server, "--stdio" },
-        --            filetypes = { "matlab", "octave", "m" },
-        --            root_dir = function()
-        --                return vim.fn.getcwd()
-        --            end,
-        --            settings = {
-        --                settings = {
-        --                    maxNumberOfProblems = 1000,
-        --                },
-        --            },
-        --        },
-        --    }
-        --end
-        --lspconfig.mlang.setup({})
 
         require("fidget").setup({})
         require('lsp_signature').setup({
@@ -72,9 +52,10 @@ return {
 
                 ["sqlls"] = function ()
                     lspconfig.sqlls.setup({
-                        cmd = {"sql-language-server", "up", "--method", "stdio"};
-                        filetypes = {"sql", "mysql"};
-                        root_dir = function() return vim.loop.cwd() end;
+                        cmd = {"sql-language-server", "up", "--method", "stdio"},
+                        capabilities=capabilities,
+                        filetypes = {"sql", "mysql"},
+                        root_dir = function() return vim.loop.cwd() end
                     })
                 end,
 
@@ -82,6 +63,7 @@ return {
                     lspconfig.phpactor.setup({
                         cmd = {'phpactor', 'language-server', '-vvv'},
                         filetypes = {'php'},
+                        capabilities=capabilities,
                         --root_dir = function()
                         --  return vim.fn.expand('%:p:h')
                         --end,
@@ -107,6 +89,7 @@ return {
                 end,
                 ["java_language_server"] = function ()
                     lspconfig.java_language_server.setup({
+                        capabilities=capabilities,
                         root_dir = function()
                             return vim.fn.expand('%:p:h')
                         end,

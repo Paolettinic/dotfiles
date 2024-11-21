@@ -107,6 +107,7 @@
 #custom-weather,
 #custom-gpu,
 #custom-playerctl,
+#custom-media,
 #tray,
 #backlight,
 #language,
@@ -289,8 +290,8 @@
     background: @font_dark_alternative;
     color: @font_gruv_normal;
 }
-#custom-playerctl {
-    font-size: 0.9em;
+#custom-playerctl,#custom-media {
+    font-size: 1em;
     color: @font_gruv_normal;
 }
 #custom-playerctl.paused{
