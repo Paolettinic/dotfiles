@@ -2,7 +2,7 @@
 {
     "layer": "bottom", // Waybar at top layer
     //"position": "bottom", // Waybar position (top|bottom|left|right)
-    //"height": 38, // Waybar height (to be removed for auto height)
+    "height": 40, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 8, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -42,7 +42,7 @@
     //},
     // Modules configuration
     "custom/media": {
-        "format": "{} <big>{icon}</big>",
+        "format": "{} {icon}",
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
@@ -214,8 +214,8 @@
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
-			"shutdown": "shutdown -h now",
-			"reboot": "reboot -h now",
+			"shutdown": "systemctl poweroff",
+			"reboot": "systemctl reboot",
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}

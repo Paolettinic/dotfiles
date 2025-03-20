@@ -1,3 +1,0 @@
-return {
-    'averms/black-nvim'
-}

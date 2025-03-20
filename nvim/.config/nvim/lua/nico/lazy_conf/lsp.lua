@@ -50,6 +50,26 @@ return {
                     }
                 end,
 
+                ["rust_analyzer"] = function ()
+                    lspconfig.rust_analyzer.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            ["rust-analyzer"] = {
+                                assist = {
+                                    importMergeBehavior = "last",
+                                    importPrefix = "by_self",
+                                },
+                                cargo = {
+                                    loadOutDirsFromCheck = true
+                                },
+                                procMacro = {
+                                    enable = true
+                                },
+                            }
+                        }
+                    })
+                end,
+
                 ["sqlls"] = function ()
                     lspconfig.sqlls.setup({
                         cmd = {"sql-language-server", "up", "--method", "stdio"},
@@ -159,5 +179,6 @@ return {
                 prefix = "",
             },
         })
+
     end
 }
