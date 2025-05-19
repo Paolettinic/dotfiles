@@ -28,6 +28,10 @@ return {
             dim_inactive = false,
             transparent_mode = true,
         },
+        -- config = function()
+        --     -- load the colorscheme here
+        --     vim.cmd.colorscheme("gruvbox")
+        -- end,
     },
     {
         'sainnhe/gruvbox-material',
@@ -38,9 +42,10 @@ return {
             -- directly inside the plugin declaration.
             vim.g.gruvbox_material_enable_italic = true
             vim.g.gruvbox_material_transparent_background = 1
+            vim.g.gruvbox_material_background = 'medium'
             vim.g.gruvbox_material_foreground = 'mix'
             vim.g.gruvbox_material_enable_bold = true
-            vim.g.gruvbox_material_ui_contrast = 'high'
+            vim.g.gruvbox_material_ui_contrast = 'soft'
             vim.g.gruvbox_material_diagnostic_text_highlight = 1
             vim.g.gruvbox_material_better_performance = 1
             vim.cmd.colorscheme('gruvbox-material')

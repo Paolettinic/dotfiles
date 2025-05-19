@@ -5,11 +5,10 @@
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
-
-font_family      "MesloLGSDZ Nerd Font"
-# bold_font        auto
-# italic_font      auto
-# bold_italic_font auto
+# font_family      "CaskaydaCove Nerd Font"
+# bold_font        "CaskaydaCove Nerd Font Bold"
+# italic_font      "CaskaydaCove Nerd Font Italic"
+# bold_italic_font "CaskaydaCove Nerd Font Bold Italic"
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. The easiest way to select fonts is to run the `kitten
@@ -20,7 +19,7 @@ font_family      "MesloLGSDZ Nerd Font"
 #: <https://sw.kovidgoyal.net/kitty/kittens/choose-fonts/#font-spec-
 #: syntax>.
 
-#font_size 18.0
+font_size 12.0
 
 #: Font size (in pts).
 
@@ -734,12 +733,12 @@ font_family      "MesloLGSDZ Nerd Font"
 
 #: Terminal bell {{{
 
-# enable_audio_bell yes
+enable_audio_bell no
 
 #: The audio bell. Useful to disable it in environments that require
 #: silence.
 
-# visual_bell_duration 0.0
+# visual_bell_duration 0.1
 
 #: The visual bell duration (in seconds). Flash the screen when a bell
 #: occurs for the specified number of seconds. Set to zero to disable.
@@ -1203,7 +1202,7 @@ background_opacity 0.9
 #: will only work if dynamic_background_opacity was enabled in the
 #: original config.
 
-# background_blur 0
+background_blur 1
 
 #: Set to a positive value to enable background blur (blurring of the
 #: visuals behind a transparent window) on platforms that support it.
@@ -2599,4 +2598,10 @@ background_opacity 0.9
 
 #: }}}
 
-include "./kitty_gruvbox_theme/gruvbox_dark.conf"
+
+# BEGIN_KITTY_THEME
+# Gruvbox Dark
+include current-theme.conf
+# END_KITTY_THEME
+
+

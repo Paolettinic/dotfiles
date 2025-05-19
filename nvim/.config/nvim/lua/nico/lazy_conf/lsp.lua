@@ -27,7 +27,13 @@ return {
         local lspconfig = require("lspconfig")
         --local lspconfig_config = require("lspconfig.configs")
 
-        require("fidget").setup({})
+        require("fidget").setup({
+            progress = {
+                suppress_on_insert = true,
+                ignore_done_already = true,
+                ignore_empty_message = true
+            }
+        })
         require('lsp_signature').setup({
             bind = true, -- This is mandatory, otherwise border config won't get registered.
             handler_opts = {

@@ -1,0 +1,20 @@
+[env]
+TERM = "xterm-256color"
+[general]
+import = ["./themes/gruvbox_dark.toml"]
+[window]
+decorations = "None"
+blur = true
+padding.x = 10
+padding.y = 10
+opacity = 0.9
+[font]
+normal.family = "Hack Nerd Font Mono"
+normal.style = "Regular"
+bold.family = "Hack Nerd Font Mono"
+italic. family = "Hack Nerd Font Mono"
+bold_italic. family = "Hack Nerd Font Mono"
+bold_italic.style = "Bold Italic"
+size = 12.0
+[colors]
+primary.background = "#252525"
