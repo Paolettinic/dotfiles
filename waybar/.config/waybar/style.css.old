@@ -1,196 +1,404 @@
-* {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-}
 
-window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
-    margin: 0 10px;
-}
+@keyframes blink-warning {
+    70% {
+        color: @light;
+    }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-window#waybar.empty #window{
-    background: none;
-}
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-
-/* you can set a style on hover for any module like this */
-
-#workspaces button {
-    color: #ffffff;
-    border-radius: 20px;
-    padding-top: 5px;
-    transition: 400ms;
-}
-
-#workspaces button:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-#workspaces button.urgent {
-    color: red;
-}
-#workspaces button.active {
-    font-size: 20px;
-    transition: 400ms;
-
-}
-
-#mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-#window,
-#workspaces,
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#power-profiles-daemon,
-#custom-power,
-#battery,
-#mpd {
-    border-radius: 20px;
-    padding: 5px 14px;
-    color: #ffffff;
-    background-color: rgba(255,255,255,0.2);
-}
-
-
-/*
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-*/
-
-/*
-#battery.charging, #battery.plugged {
-    color: #10DD10;
-}
-*/
-
-@keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        color: @light;
+        background-color: @warning;
     }
 }
 
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
+@keyframes blink-critical {
+    70% {
+      color: @light;
+    }
+
+    to {
+        color: @light;
+        background-color: @critical;
+    }
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Styles
+ * -------------------------------------------------------------------------- */
+
+/* COLORS */
+
+/* Gruvbox Dark */
+
+/*@define-color bg #353C4A;*/
+@define-color light #D8DEE9;
+/*@define-color dark @nord_dark_font;*/
+@define-color warning #ebcb8b;
+/*@define-color critical #BF616A;*/
+/*@define-color mode @bg;*/
+/*@define-color workspaces @bg;*/
+/*@define-color workspaces @nord_dark_font;*/
+/*@define-color workspacesfocused #655b53;*/
+/*@define-color tray @bg;*/
+/*@define-color workspacesfocused #4C566A;
+@define-color tray @workspacesfocused;
+@define-color sound #EBCB8B;
+@define-color network #5D7096;
+@define-color memory #546484;
+@define-color cpu #596A8D;
+@define-color temp #4D5C78;
+@define-color layout #5e81ac;
+@define-color battery #88c0d0;
+@define-color date #434C5E;
+@define-color time #434C5E;
+@define-color backlight #434C5E;*/
+@define-color nord_bg #282828;
+@define-color nord_bg_blue @bg;
+@define-color nord_light #D8DEE9;
+
+@define-color nord_dark_font #272727;
+
+
+@define-color bg #282828;
+@define-color critical #BF616A;
+@define-color tray @bg;
+@define-color mode @bg;
+
+@define-color bluetint #448488;
+@define-color bluelight #83a597;
+@define-color magenta-dark #b16185;
+
+
+@define-color font_gruv_normal #ebdbb2;
+@define-color font_gruv_faded #a89985;
+@define-color font_gruv_darker #D8DEE9;
+@define-color font_gruv_alternative #FFAF00;
+@define-color font_dark_alternative #655b53;
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0px;
+    min-height: 0;
+    /*margin: 0.15em 0.25em 0.15em 0.25em;*/
+}
+
+/* The whole bar */
+#waybar {
+    background: @bg;
+    color: @font_gruv_alternative;
+    font-family: "Cantarell", "Font Awesome 5 Pro";
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+/* Each module */
+#battery,
+#clock,
+#cpu,
+#custom-layout,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#custom-alsa,
+#custom-pacman,
+#custom-weather,
+#custom-gpu,
+#custom-playerctl,
+#custom-media,
+#tray,
+#backlight,
+#language,
+#custom-cpugovernor,
+#custom-scratchpad-indicator,
+#custom-pacman,
+#idle_inhibitor,
+#bluetooth {
+/*    padding-left: 0.3em;
+    padding-right: 0.3em;*/
+    padding: 0.6em 0.8em;
+}
+
+/* Each module that should blink */
+#mode,
+#memory,
+#temperature,
+#battery {
+    animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-#power-profiles-daemon {
-    padding-right: 15px;
-}
-/*
-#power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
-}
-
-#power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
+/* Each critical module */
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical {
+    color: @critical;
 }
 
-#power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
-}
-*/
-label:focus {
-    background-color: #000000;
-}
-
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
+/* Each critical that should blink */
+#mode,
+#memory.critical,
+#temperature.critical,
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning {
+    background: @warning;
+    color: @nord_dark_font;
 }
 
+/* Each warning that should blink */
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+/* Adding arrows to boxes */
+/*#custom-arrow1 {
+    font-size: 16px;
+    color: @sound;
+    background: transparent;
+}
+
+#custom-arrow2 {
+    font-size: 16px;
+    color: @network;
+    background: @sound;
+}
+
+#custom-arrow3 {
+    font-size: 16px;
+    color: @memory;
+    background: @network;
+}
+
+#custom-arrow4 {
+    font-size: 16px;
+    color: @cpu;
+    background: @memory;
+}
+
+#custom-arrow5 {
+    font-size: 16px;
+    color: @temp;
+    background: @cpu;
+}
+
+#custom-arrow6 {
+    font-size: 16px;
+    color: @layout;
+    background: @temp;
+}
+
+#custom-arrow7 {
+    font-size: 16px;
+    color: @battery;
+    background: @layout;
+}
+
+#custom-arrow8 {
+    font-size: 16px;
+    color: @date;
+    background: @battery;
+}
+
+#custom-arrow9 {
+    font-size: 16px;
+    color: @time;
+    background: @date;
+}*/
+
+#custom-arrow1 {
+    font-size: 2em;
+    color: @bg;
+    background: @bluetint;
+}
+#custom-arrow2 {
+    font-size: 2em;
+    color: @bluetint;
+    background: @font_dark_alternative;
+}
+#custom-arrow3 {
+    font-size: 2em;
+    color: @font_dark_alternative;
+    background: @bg;
+}
+#custom-arrow4 {
+    font-size: 2.1em;
+    color: @font_gruv_normal;
+    background: @bg;
+}
+#custom-arrow5 {
+    font-size: 2.12em;
+    color: @font_gruv_normal;
+    background: @bg;
+}
+#custom-arrow6 {
+    font-size: 2em;
+    color: @font_dark_alternative;
+    background: @bg;
+}
+#custom-arrow7 {
+    font-size: 2em;
+    color: @bluetint;
+    background: @font_dark_alternative;
+}
+#custom-arrow8 {
+    font-size: 2em;
+    color: @bg;
+    background: @bluetint;
+}
+
+/* And now modules themselves in their respective order */
+#clock.time {
+    background: @bg;
+    color: @font_gruv_alternative;
+}
+#clock.date {
+    background: @bg;
+    color: @font_gruv_alternative;
+}
+
+#custom-scratchpad-indicator {
+    background: @bluetint;
+    color: @font_gruv_normal;
+}
+#language {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#custom-kdeconnect {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#custom-pacman {
+    background: @bluetint;
+    color: @font_gruv_normal;
+}
 #idle_inhibitor {
-    background-color: #2d3436;
+    background: @font_dark_alternative;
+    color: @font_gruv_normal;
+}
+#custom-playerctl,#custom-media {
+    font-size: 1em;
+    color: @font_gruv_normal;
+}
+#custom-playerctl.paused{
+    color: @font_dark_alternative;
+    font-size: 0.9em;
+}
+/* Workspaces stuff */
+#workspaces {
+}
+#workspaces button {
+    background: @font_dark_alternative;
+    padding: 0em 1.2em;
+    color: @font_gruv_normal;
+    min-width: 0em;
+}
+#workspaces button.active{
+    font-weight: bolder; /* Somewhy the bar-wide setting is ignored*/
+}
+#workspaces button.urgent {
+    color: #c9545d;
+    opacity: 1;
+}
+#custom-cpugovernor {
+    background-color: @font_dark_alternative;
+    color: @font_gruv_normal;
+}
+#custom-cpugovernor.perf {
+
+}
+#cpu {
+    background: @bluetint;
+    color: @font_gruv_normal;
+    padding-left: 0em;
+    padding-right: 0.2em;
+}
+#cpu.critical {
+    color: @nord_dark_font;
+    background: @critical;
+}
+#temperature {
+    background-color: @bluetint;
+    color: @font_gruv_normal;
+    padding-right: 0em;
+}
+#temperature.critical {
+    background:  @critical;
+}
+#custom-gpu {
+    background: @bluetint;
+    color: @font_gruv_normal;
+    padding-left: 0em;
+}
+#pulseaudio {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#pulseaudio.muted {
+    color: #fb4833;
+}
+#pulseaudio.source-muted {
+    /* moved to config */
+}
+#bluetooth {
+    background: @bg;
+    color: @font_gruv_normal;
+}
+#network {
+    background: @bg;
+    color: @font_gruv_faded;
+}
+#tray {
+    background: @bg;
+    color: @font_gruv_normal;
 }
 
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+#custom-alsa {
+    background: @sound;
+}
+#memory {
+    background: @memory;
+}
+#custom-layout {
+    background: @layout;
+}
+#mode { /* Shown current Sway mode (resize etc.) */
+    color: @light;
+    background: @mode;
+}
+#battery {
+    background: @battery;
 }
 
-
-#mpd.disconnected {
-    background-color: #f53c3c;
+#backlight {
+    background: @backlight;
 }
-
-#mpd.stopped {
-    background-color: #90b1b1;
+#window {
+    margin-right: 40px;
+    margin-left: 40px;
+    font-weight: normal;
 }
-
-#mpd.paused {
-    background-color: #51a37a;
+#custom-weather {
+    background: @mode;
+    font-weight: bold;
+    padding: 0 0.6em;
 }
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
-}
-
-#privacy {
-    padding: 0;
-}
-
-#privacy-item {
-    padding: 0 5px;
-    color: white;
+#custom-notification{
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 0 0.6em;
 }
