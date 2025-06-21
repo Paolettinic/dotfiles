@@ -1,0 +1,5 @@
+allow_images=true
+columns=2
+prompt=Search...
+matching="fuzzy"
+lines=15
