@@ -2,15 +2,12 @@ vim.g.mapleader = " "
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n","<leader>pv", vim.cmd.Ex)
--- vim.keymap.set("n","<C-L>", function ()
---     vim.api.nvim_win_set_width(0,vim.api.nvim_win_get_width(0) + 1)
--- end)
--- vim.keymap.set("n","<C-H>", function ()
---     vim.api.nvim_win_set_width(0,vim.api.nvim_win_get_width(0) - 1)
--- end)
--- vim.keymap.set("n","<C-K>", function ()
---     vim.api.nvim_win_set_height(0,vim.api.nvim_win_get_height(0) - 1)
--- end)
--- vim.keymap.set("n","<C-J>", function ()
---     vim.api.nvim_win_set_height(0,vim.api.nvim_win_get_height(0) + 1)
--- end)
+
+-- Resize splits with ctrl alt hjkl keys
+vim.keymap.set("n", "<C-A-h>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<C-A-l>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<C-A-j>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-A-k>", ":resize -2<CR>")
+
+
+

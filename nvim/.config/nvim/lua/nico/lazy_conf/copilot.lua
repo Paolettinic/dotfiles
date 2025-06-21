@@ -8,6 +8,6 @@ return {
         })
         vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)')
         vim.g.copilot_no_tab_map = true
-    end
+    end,
 }
 

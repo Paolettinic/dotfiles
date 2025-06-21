@@ -388,7 +388,6 @@
   "theme.bar.buttons.modules.worldclock.border": "#d3869b",
   "bar.layouts": {
     "0": {
-
       "left": [
         "dashboard",
         "workspaces",
@@ -458,5 +457,13 @@
   "theme.bar.buttons.network.enableBorder": false,
   "bar.clock.showIcon": true,
   "bar.clock.showTime": true,
-  "bar.clock.format": "%a %b %d  %H:%M"
+  "bar.clock.format": "%a %b %d  %H:%M",
+  "theme.bar.buttons.modules.netstat.enableBorder": false,
+  "bar.customModules.netstat.dynamicIcon": false,
+  "theme.bar.buttons.modules.weather.enableBorder": false,
+  "theme.bar.buttons.modules.cava.enableBorder": false,
+  "theme.bar.buttons.modules.worldclock.enableBorder": false,
+  "theme.bar.buttons.borderSize": "0.01em",
+  "bar.workspaces.showWsIcons": false,
+  "theme.bar.buttons.systray.enableBorder": false
 }

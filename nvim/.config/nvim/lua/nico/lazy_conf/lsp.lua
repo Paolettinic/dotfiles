@@ -113,14 +113,8 @@ return {
                         filetypes = {"html","php","smarty"}
                     })
                 end,
-                ["java_language_server"] = function ()
-                    lspconfig.java_language_server.setup({
-                        capabilities=capabilities,
-                        root_dir = function()
-                            return vim.fn.expand('%:p:h')
-                        end,
-                    })
-                end,
+                -- Ignore jdtls as it is set up in the java.lua file
+                ["jdtls"] = function() end,
             }
         })
 
